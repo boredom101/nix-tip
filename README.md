@@ -11,8 +11,8 @@ Recommends integrations based on enabled shells and programs.
 ```nix
 [
   {
-    ifValue = "path.to.bool.value";
-    thenValues = ["path.to.another.bool.value"];
+    ifValues = ["path.to.bool.value"];
+    thenValue = "path.to.another.bool.value";
     weight = 10; # Could be any int from -100 to 100
   }
   # And so on...
