@@ -18,3 +18,5 @@ Recommends integrations based on enabled shells and programs.
   # And so on...
 ]
 ```
+
+(Currently only works with home-manager)
