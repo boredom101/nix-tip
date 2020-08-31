@@ -2,10 +2,12 @@
 tipsPath, confPath, type
 }:
 
+with builtins;
+
 let
   
   recAttr = (path: set:
-    if ((builtins.length path) == 1) then (builtins.getAttr (builtins.elemAt path 0) set) else recAttr (builtins.tail path) (builtins.getAttr (builtins.elemAt path 0) set)
+    if ((length path) == 1) then (getAttr (elemAt path 0) set) else recAttr (tail path) (getAttr (elemAt path 0) set)
   );
   
   args = rec {
@@ -20,14 +22,14 @@ let
   
   check = path:
     let
-      splitPath = builtins.filter builtins.isString (builtins.split "\\." path);
+      splitPath = filter isString (split "\\." path);
     in recAttr splitPath config;
   
-  results = builtins.filter (s: builtins.stringLength s > 0)  (builtins.map (tip:
+  results = filter (s: stringLength s > 0)  (map (tip:
     let
-      enabled = (builtins.foldl' (a: b: a && b) true (map check tip.ifValues));
+      enabled = (foldl' (a: b: a && b) true (map check tip.ifValues));
     in
       if enabled then "TIP: ${tip.thenValue} (${toString tip.weight})" else ""
   ) tips);
 
-in (builtins.concatStringsSep "\n" results) + "\n"
+in (concatStringsSep "\n" results) + "\n"
