@@ -50,9 +50,12 @@ let
           if (x.dynamic == []) then {value = x.value; option = tip.thenValue;}
           else {value = x.value; option = builtins.replaceStrings ["*"] [x.dynamic] tip.thenValue;}
         ) checks);
+        abs = (x:
+          if (x < 0) then -x else x
+        );
       in
         (map (x:
-          if x.value then "TIP: ${x.option} (${toString tip.weight})" else ""
+          if x.value then "${if tip.weight >= 0 then "Recommended" else "Discouraged"}: ${x.option} (${toString (abs tip.weight)})" else ""
         ) temp)
   ) tips));
 
