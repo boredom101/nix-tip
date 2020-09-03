@@ -3,8 +3,24 @@ A NixOS / Nix recommendation system (Proof of Concept)
 
 ## Example:
 
-`$ ./nix-tip.sh "home" home.nix examples/shell-tips.nix`
+`$ ./nix-tip.sh --type "home" --config home.nix --tip examples/shell-tips.nix`
 Recommends integrations based on enabled shells and programs.
+
+## Help:
+```
+Usage: ./nix-tip.sh --tip <tips.nix> --type <TYPE> --config <config.nix>
+
+Options
+
+  -A, --attr ATTRIBUTE      Optional attribute that selects a configuration
+                      expression in the config file
+  -C, --config FILE         Config files to generate recommendations on
+  -H, --help                Print this help.
+      --show-trace          Sent to the call to nix-instantiate, useful for
+                      debugging
+  -T, --tip FILE            File containing tips to generate recommendations with
+  --type                    The type of config file that is being used
+```
 
 ## Format:
 
