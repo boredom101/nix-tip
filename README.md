@@ -14,6 +14,7 @@ Options
 
   -A, --attr ATTRIBUTE      Optional attribute that selects a configuration
                       expression in the config file
+  --color                   Color code the output
   -C, --config FILE         Config files to generate recommendations on
   -H, --help                Print this help.
       --show-trace          Sent to the call to nix-instantiate, useful for

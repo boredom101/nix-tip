@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
 type=
 config=
 tip=
 extraFlags=
 attr=" "
+colored=
 
 showSyntax() {
     echo "Usage: $0 --tip <tips.nix> --type <TYPE> --config <config.nix>"
@@ -13,6 +18,7 @@ showSyntax() {
     echo
     echo "  -A, --attr ATTRIBUTE      Optional attribute that selects a configuration"
     echo "                      expression in the config file"
+    echo "  --color                   Color code the output"
     echo "  -C, --config FILE         Config files to generate recommendations on"
     echo "  -H, --help                Print this help."
     echo "      --show-trace          Sent to the call to nix-instantiate, useful for"
@@ -43,6 +49,9 @@ while [ "$#" -gt 0 ]; do
         --type)
             type="$1"; shift 1
             ;;
+        --color)
+            colored="true"
+            ;;
         *)
             echo "unknown option: \`$i'"
             exit 1
@@ -55,4 +64,15 @@ TEXT=$(nix-instantiate $extraFlags --eval nix-tip.nix --argstr "tipsPath" $(real
 TEXT=${TEXT#\"}
 TEXT=${TEXT%\"}
 
-printf "$TEXT"
+printf "$TEXT" | while read line ; do
+    if [ $colored == "true" ]; then
+        if [[ "$line" == "Recommended:"* ]];
+        then
+            line=${GREEN}${line}
+        else
+            line=${RED}${line}
+        fi
+        line+=$NC
+    fi
+    printf "$line\n"
+done
