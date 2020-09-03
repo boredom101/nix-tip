@@ -1,5 +1,5 @@
 {
-    tipsPath, confPath, type
+    tipsPath, confPath, type, confAttr ? ""
 }:
 
 with builtins;
@@ -20,9 +20,11 @@ let
     map (x: if (x == old) then new else x) list
   );
 
+  splitAttr = filter isString (split "\\." confAttr);
+
   args = rec {
     pkgs = import <nixpkgs> {};
-    configuration = (import confPath args);
+    configuration = if confAttr == " " then (import confPath args) else (recAttr splitAttr (import confPath args));
     lib = pkgs.stdenv.lib;
   };
   
