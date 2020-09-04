@@ -3,12 +3,12 @@ A NixOS / Nix recommendation system (Proof of Concept)
 
 ## Example:
 
-`$ ./nix-tip.sh --type "home" --config home.nix --tip examples/shell-tips.nix`
+`$ ./nix-tip --type "home" --config home.nix --tip examples/shell-tips.nix`
 Recommends integrations based on enabled shells and programs.
 
 ## Help:
 ```
-Usage: ./nix-tip.sh --tip <tips.nix> --type <TYPE> --config <config.nix>
+Usage: ./nix-tip --tip <tips.nix> --type <TYPE> --config <config.nix>
 
 Options
 
