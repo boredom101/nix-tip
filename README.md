@@ -36,4 +36,5 @@ Options
 ]
 ```
 
-(Currently only works with home-manager)
+Works with NixOS and home-manager
+(Just set `--type` to either `home` or `nixos`)
