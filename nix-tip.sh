@@ -9,7 +9,7 @@ config=
 tip=
 extraFlags=
 attr=" "
-colored=
+colored=false
 
 showSyntax() {
     echo "Usage: $0 --tip <tips.nix> --type <TYPE> --config <config.nix>"
