@@ -22,13 +22,27 @@ let
 
   splitAttr = filter isString (split "\\." confAttr);
 
+  config = if (type == "home") then (
+    let
+      args = rec {
+        pkgs = import <nixpkgs> {};
+        configuration = if confAttr == " " then (import confPath args) else (recAttr splitAttr (import confPath args));
+        lib = pkgs.stdenv.lib;
+      };
+    in (import <home-manager/modules> args).config
+  ) else (
+    let
+      args = rec {
+        modules = [(if confAttr == " " then (import confPath args) else (recAttr splitAttr (import confPath args)))];
+        pkgs = import <nixpkgs> {};
+      };
+    in (import <nixpkgs/nixos/lib/eval-config.nix> args).config
+  );
   args = rec {
     pkgs = import <nixpkgs> {};
     configuration = if confAttr == " " then (import confPath args) else (recAttr splitAttr (import confPath args));
     lib = pkgs.stdenv.lib;
   };
-  
-  config = (import <home-manager/modules> args).config;
   
   tips = import tipsPath {};
   

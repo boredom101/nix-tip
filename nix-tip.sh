@@ -48,12 +48,18 @@ while [ "$#" -gt 0 ]; do
             ;;
         --type)
             type="$1"; shift 1
+            case $type in
+                nixos|home);;
+                *)
+                    echo "unknown type: '$type'"
+                    exit 1 ;;
+            esac
             ;;
         --color)
             colored="true"
             ;;
         *)
-            echo "unknown option: \`$i'"
+            echo "unknown option: '$i'"
             exit 1
         ;;
     esac
