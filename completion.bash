@@ -19,8 +19,6 @@ _nix-tip_complete ()
     COMPREPLY=()
 
     case "$PreviousWord" in
-        #"-A"|"--attr")
-            #;;
         "-C"|"--config")
             COMPREPLY+=( $( compgen -o plusdirs -f -X '!*.nix' -- "$CurrentWord") )
             ;;
