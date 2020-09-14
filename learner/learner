@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-THRSH=$1
-INPUT=$2
-OUTPUT=$3
-
-./prep.sh $INPUT | python3 main.py $THRSH $(realpath $OUTPUT)
