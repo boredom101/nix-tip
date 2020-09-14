@@ -2,5 +2,5 @@
 
 while read line; do
     path=$(realpath $line)
-    echo $(nix-instantiate --eval extract.nix --argstr conf $path)
+    echo $(nix-instantiate --eval learner/extract.nix --argstr conf $path)
 done < $1

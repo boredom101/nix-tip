@@ -1,7 +1,41 @@
 #!/usr/bin/env bash
 
-THRSH=$1
-INPUT=$2
-OUTPUT=$3
+THRSH=0
+INPUT=
+OUTPUT=
+
+showSyntax() {
+    echo "Usage: $0 --input <source.txt> --thresh <NUMBER> --output <tips.json>"
+    echo
+    echo "Options"
+    echo
+    echo "  -H, --help                Print this help."
+    echo "  -I, --input FILE          The file with a path to a training file on each line"
+    echo "  -O, --output FILE         A JSON file containing the result of the training"
+    echo "  -T, --thresh NUMBER       An integer from 0 to 100 for the threshold of tip weights"
+    exit 0
+}
+
+while [ "$#" -gt 0 ]; do
+    i="$1"; shift 1
+    case "$i" in
+        --help|-h|-H)
+            showSyntax
+            ;;
+        --input|-I)
+            INPUT="$1"; shift 1
+            ;;
+        --output|-O)
+            OUTPUT="$1"; shift 1
+            ;;
+        --thresh|-T)
+            THRSH="$1"; shift 1
+            ;;
+        *)
+            echo "unknown option: '$i'"
+            exit 1
+        ;;
+    esac
+done
 
 ./learner/prep.sh $INPUT | python3 learner/main.py $THRSH $(realpath $OUTPUT)
