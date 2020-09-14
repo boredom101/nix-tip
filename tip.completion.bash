@@ -3,7 +3,7 @@
 _nix-tip_complete ()
 {
     local Options
-    Options=( "-A" "--attr" "--color" "-C" "--config" "-H" "-h" "--help" "--show-trace" "-T" "--tip" "--type")
+    Options=( "-A" "--attr" "--color" "-C" "--config" "-H" "--help" "--show-trace" "-T" "--tip" "--type")
     
     local CurrentWord
     CurrentWord="${COMP_WORDS[$COMP_CWORD]}"
@@ -31,7 +31,6 @@ _nix-tip_complete ()
         *)
             COMPREPLY+=( $( compgen -W "${Options[*]}" -- "$CurrentWord" ) )
             ;;
-
     esac
 }
 
