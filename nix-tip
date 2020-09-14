@@ -24,7 +24,7 @@ showSyntax() {
     echo "      --show-trace          Sent to the call to nix-instantiate, useful for"
     echo "                      debugging"
     echo "  -T, --tip FILE            File containing tips to generate recommendations with"
-    echo "  --type                    The type of config file that is being used"
+    echo "  --type TYPE               The type of config file that is being used"
     exit 0
 }
 
