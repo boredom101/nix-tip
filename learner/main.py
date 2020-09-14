@@ -10,7 +10,7 @@ outputs = []
 
 counter = 0
 
-thresh = float(sys.argv[1])
+thresh = int(sys.argv[1])
 outpath = sys.argv[2]
 
 def isEnable(item):
@@ -67,10 +67,11 @@ for conf1 in configs.keys():
             results[conf1 + "+" + conf2] = jaccard(conf1, conf2)
 
 for key in results.keys():
+    results[key] = round(100 * results[key])
     if results[key] >= thresh:
         temp = key.split("+")
         ifValue, thenValue = analyze(temp[0], temp[1])
-        outputs.append({"weight": round(100 * results[key]), "ifValues": [ifValue], "thenValue": thenValue})
+        outputs.append({"weight": results[key], "ifValues": [ifValue], "thenValue": thenValue})
 
 with open(outpath, 'w') as fp:
     json.dump(outputs, fp)
