@@ -38,7 +38,7 @@ Options
 
 ## Learner:
 
-To generate a tips file: `./learner/learner 15 ~/source.txt ~/tips.json`
+To generate a tips file: `./nix-learner 15 ~/source.txt ~/tips.json`
 
 `15` being the threshold, `source.txt` being a file with a path to a configuration.nix on each line, and `tips.json` being an output to a JSON file you can include in a tips.nix file.
 
