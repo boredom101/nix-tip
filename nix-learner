@@ -9,7 +9,7 @@ showSyntax() {
     echo
     echo "Options"
     echo
-    echo "  -H, --help                Print this help."
+    echo "  -H, --help                Print this help"
     echo "  -I, --input FILE          The file with a path to a training file on each line"
     echo "  -O, --output FILE         A JSON file containing the result of the training"
     echo "  -T, --thresh NUMBER       An integer from 0 to 100 for the threshold of tip weights"
