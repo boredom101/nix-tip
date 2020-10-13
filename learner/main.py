@@ -74,4 +74,4 @@ for key in results.keys():
         outputs.append({"weight": results[key], "ifValues": [ifValue], "thenValue": thenValue})
 
 with open(outpath, 'w') as fp:
-    json.dump(outputs, fp)
+    json.dump(outputs, fp, indent=4)
