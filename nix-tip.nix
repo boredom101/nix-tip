@@ -74,6 +74,3 @@ let
   ) tips));
 
 in (concatStringsSep "\n" results) + "\n"
-
-# splitPaths > list of list of strings
-#  > 
