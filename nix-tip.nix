@@ -29,7 +29,12 @@ let
         configuration = if confAttr == " " then (import confPath args) else (recAttr splitAttr (import confPath args));
         lib = pkgs.stdenv.lib;
       };
-    in (import <home-manager/modules> args).config
+    in
+      let 
+        home-manager = builtins.fetchTarball {
+          url = "https://github.com/nix-community/home-manager/archive/release-20.09.tar.gz";
+        };
+      in ((import "${home-manager}/modules") args).config
   ) else (
     let
       args = rec {
