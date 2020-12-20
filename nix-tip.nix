@@ -26,7 +26,7 @@ let
     let
       args = rec {
         pkgs = import <nixpkgs> {};
-        configuration = if confAttr == " " then (import confPath args) else (recAttr splitAttr (import confPath args));
+        configuration = if confAttr == " " then (import confPath) else (import confPath).${confAttr};
         lib = pkgs.stdenv.lib;
       };
     in
